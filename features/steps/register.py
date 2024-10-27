@@ -127,6 +127,7 @@ def step_impl(context):
 @then(u'Proper writing message for every mandatory fields should be displayed')
 def step_impl(context):
     assert context.driver.find_element(By.XPATH,'//*[@id="account"]/div[2]/div/div').text =='First Name must be between 1 and 32 characters!'
+    assert context.driver.find_element(By.XPATH,'//*[@id="account"]/div[3]/div/div').text == 'Last Name must be between 1 and 32 characters!'
     time.sleep(3)
     context.driver.quit()
  #   raise NotImplementedError(u'STEP: Then Proper writing message for every mandatory fields should be displayed')
