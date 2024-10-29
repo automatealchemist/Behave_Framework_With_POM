@@ -12,10 +12,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 @given(u'I got navigated to Homepage')
 def step_impl(context):
-    chrome_option = Options()
-    chrome_option.add_experimental_option("detach", True)
-    context.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_option)
-    context.driver.maximize_window()
+    #chrome_option = Options()
+    #chrome_option.add_experimental_option("detach", True)
+    #context.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_option)
+    #context.driver.maximize_window()'''
     context.driver.get("https://tutorialsninja.com/demo/")
 
 
@@ -33,7 +33,7 @@ def step_impl(context):
 def step_impl(context):
     assert context.driver.find_element(By.LINK_TEXT,"HP LP3065").is_displayed()
     context.driver.find_element(By.LINK_TEXT,"HP LP3065").click()
-    context.driver.quit()
+   # context.driver.quit()
 
 
 
@@ -46,11 +46,11 @@ def step_impl(context):
 @then(u'proper message should be visible in the search result')
 def step_impl(context):
     time.sleep(3)
-   # assert context.driver.find_element(By.XPATH,'//*[@id="content"]/p[2]').text =="There is no product that matches the search criteria."
+   #assert context.driver.find_element(By.XPATH,'//*[@id="content"]/p[2]').text =="There is no product that matches the search criteria."
     sample_text ="There is no product that matches the search criteria."
     assert context.driver.find_element(By.XPATH,
                                        '//*[@id="content"]/p[2]').text.__eq__(sample_text)
-    context.driver.quit()
+ #   context.driver.quit()
 
 
 
@@ -58,5 +58,6 @@ def step_impl(context):
 def step_impl(context):
     time.sleep(3)
     context.driver.find_element(By.XPATH, '//*[@id="search"]/span/button').click()
+
 
 
