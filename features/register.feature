@@ -1,4 +1,4 @@
-Feature:
+Feature: Register New User
 
   Scenario: Register with mandatory fields
     Given I navigate to Register Page

@@ -13,13 +13,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 @given(u'I got navigated to Homepage')
 def step_impl(context):
-    #chrome_option = Options()
-    #chrome_option.add_experimental_option("detach", True)
-    #context.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_option)
-    #context.driver.maximize_window()'''
-    context.driver.get("https://tutorialsninja.com/demo/")
-
-
+    search_url = context.base_url+"demo"
+    context.driver.get(search_url)
 
 @when(u'I enter valid product name in search box field')
 def step_impl(context):
@@ -34,26 +29,16 @@ def step_impl(context):
 def step_impl(context):
     assert context.driver.find_element(By.LINK_TEXT,"HP LP3065").is_displayed()
     context.driver.find_element(By.LINK_TEXT,"HP LP3065").click()
-   # context.driver.quit()
-
-
 
 @when(u'I enter invalid product name in search box field')
 def step_impl(context):
     context.driver.find_element(By.NAME, 'search').send_keys("abcxz")
 
-
-
 @then(u'proper message should be visible in the search result')
 def step_impl(context):
     time.sleep(3)
-   #assert context.driver.find_element(By.XPATH,'//*[@id="content"]/p[2]').text =="There is no product that matches the search criteria."
     sample_text ="There is no product that matches the search criteria."
-    assert context.driver.find_element(By.XPATH,
-                                       '//*[@id="content"]/p[2]').text.__eq__(sample_text)
- #   context.driver.quit()
-
-
+    assert context.driver.find_element(By.XPATH, '//*[@id="content"]/p[2]').text.__eq__(sample_text)
 
 @when(u'I donot enter anything in the search box field')
 def step_impl(context):

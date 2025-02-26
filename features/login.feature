@@ -1,6 +1,6 @@
 
 
-Feature: Login functionality
+Feature: Login with Email & Password
 
 
   Scenario: Login with valid credentials

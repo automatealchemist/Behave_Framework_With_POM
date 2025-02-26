@@ -1,4 +1,4 @@
-Feature: Search functionality
+Feature: Search any product
 
   @first
   Scenario: Search for a valid product
