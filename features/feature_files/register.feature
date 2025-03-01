@@ -33,5 +33,5 @@ Feature: Register New User
       Given I navigate to Register page
       When I donot enter anything into the fields
       And I select Privacy Policy Options
-      And I click on the Continue button
+      And I click on Continue button
       Then Proper writing message for every mandatory fields should be displayed

@@ -9,7 +9,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.ie.webdriver import WebDriver
 from webdriver_manager.chrome import ChromeDriverManager
 from win32pdhutil import browse
-from utlities import ConfigReader
+from utilities import *
+from utilities import ConfigReader
 
 
 def before_scenario(context,scenario):
