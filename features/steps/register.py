@@ -12,10 +12,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.ie.webdriver import WebDriver
 from webdriver_manager.chrome import ChromeDriverManager
-number = random.randint(1000, 9999)
-number1 = random.randint(1000, 9999)
-new_email = "bdddemo" + str(number) + "@mailinator.com"
-new_email1 = "bdddemo" + str(number1) + "@mailinator.com"
+
 
 
 @given(u'I navigate to Register Page')
@@ -25,32 +22,32 @@ def step_impl(context):
     context.driver.get(login_url)
     context.home = Registration(context.driver)
     time.sleep(2)
-    context.home.my_account_click().click()
-    context.home.register_click().click()
+    context.home.my_account_click()
+    context.home.register_click()
     time.sleep(2)
 
 
 @when(u'I enter mandatory fields')
 def step_impl(context):
-    context.home.first_name().send_keys("ujjwal")
-    context.home.last_name().send_keys("kumar")
-    context.home.email().send_keys(new_email)
+    context.home.first_name()
+    context.home.last_name()
+    context.home.email()
     time.sleep(2)
-    context.home.phone_number().send_keys("1234567890")
+    context.home.phone_number()
     time.sleep(2)
-    context.home.new_password().send_keys("Abcdef@123456")
+    context.home.new_password()
     time.sleep(2)
-    context.home.confirm_password().send_keys("Abcdef@123456")
+    context.home.confirm_password()
 
 
 @when(u'I select Privacy Policy Options')
 def step_impl(context):
-    context.home.privacy_policy().click()
+    context.home.privacy_policy()
 
 
 @when(u'I click on Continue button')
 def step_impl(context):
-    context.home.continues().click()
+    context.home.continues()
     time.sleep(3)
 
 
@@ -62,62 +59,62 @@ def step_impl(context):
 
 @when(u'I enter all fields')
 def step_impl(context):
-    context.home.first_name().send_keys("ujjwal")
-    context.home.last_name().send_keys("kumar")
-    context.home.email().send_keys(new_email1)
+    context.home.first_name()
+    context.home.last_name()
+    context.home.email_1()
     time.sleep(2)
-    context.home.phone_number().send_keys("1234567890")
+    context.home.phone_number()
     time.sleep(2)
-    context.home.new_password().send_keys("Abcdef@123456")
+    context.home.new_password()
     time.sleep(2)
-    context.home.confirm_password().send_keys("Abcdef@123456")
-    context.home.radio_button().click()
+    context.home.confirm_password()
+    context.home.radio_button()
     time.sleep(3)
 
 
 @when(u'I enter all fields except email address')
 def step_impl(context):
-    context.home.first_name().send_keys("ujjwal")
-    context.home.last_name().send_keys("kumar")
-    context.home.email().send_keys('')
-    context.home.phone_number().send_keys("1234567890")
-    context.home.new_password().send_keys("Abcdef@123456")
-    context.home.confirm_password().send_keys("Abcdef@123456")
-    context.home.radio_button().click()
+    context.home.first_name()
+    context.home.last_name()
+    context.home.email_blank()
+    context.home.phone_number()
+    context.home.new_password()
+    context.home.confirm_password()
+    context.home.radio_button()
 
 
 @then(u'Proper warning message should be visible informing about missing of email field')
 def step_impl(context):
-    assert context.home.valid_email().text == 'E-Mail Address does not appear to be valid!'
+    context.home.email_assert()
     time.sleep(3)
 
 
 @when(u'I enter existing email address into email fields')
 def step_impl(context):
-    context.home.first_name().send_keys("ujjwal")
-    context.home.last_name().send_keys("kumar")
-    context.home.email().send_keys("bdddemo2@mailinator.com")
-    context.home.phone_number().send_keys("1234567890")
-    context.home.new_password().send_keys("Abcdef@123456")
-    context.home.confirm_password().send_keys("Abcdef@123456")
-    context.home.radio_button().click()
+    context.home.first_name()
+    context.home.last_name()
+    context.home.email()
+    context.home.phone_number()
+    context.home.new_password()
+    context.home.confirm_password()
+    context.home.radio_button()
 
 
 
 @then(u'Proper warning message informing about duplicate account should be displayed.')
 def step_impl(context):
-    assert context.home.email_assert().text=='Warning: E-Mail Address is already registered!'
+    context.home.email_duplicate()
     time.sleep(3)
 
 
 @when(u'I donot enter anything into the fields')
 def step_impl(context):
-    context.home.first_name().send_keys("")
-    context.home.last_name().send_keys("")
-    context.home.email().send_keys("")
-    context.home.phone_number().send_keys("")
-    context.home.new_password().send_keys("")
-    context.home.confirm_password().send_keys("")
+    context.home.first_name_blank()
+    context.home.last_name_blank()
+    context.home.email_blank()
+    context.home.phone_number_blank()
+    context.home.new_password_blank()
+    context.home.confirm_password_blank()
 
 
 

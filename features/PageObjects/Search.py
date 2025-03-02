@@ -10,16 +10,21 @@ class Search:
     searchresult = (By.LINK_TEXT,"HP LP3065")
     searchtext = (By.XPATH, '//*[@id="content"]/p[2]')
 
-    def search_keyword(self):
-        return self.driver.find_element(*Search.search_k)
+    def search_valid_keyword(self):
+        self.driver.find_element(*Search.search_k).send_keys("HP")
 
     def search_button(self):
-        return self.driver.find_element(*Search.searchbutton)
+        self.driver.find_element(*Search.searchbutton).click()
 
     def search_result(self):
-        return self.driver.find_element(*Search.searchresult)
+        assert self.driver.find_element(*Search.searchresult).is_displayed()
+        self.driver.find_element(*Search.searchresult).click()
 
     def search_text(self):
-        return self.driver.find_element(*Search.searchtext)
+        sample_text = "There is no product that matches the search criteria."
+        assert self.driver.find_element(*Search.searchtext).text.__eq__(sample_text)
+
+    def search_invalid_keyword(self):
+        self.driver.find_element(*Search.search_k).send_keys("abcxyz")
 
 

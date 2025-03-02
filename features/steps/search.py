@@ -22,31 +22,29 @@ def step_impl(context):
 @when(u'I enter valid product name in search box field')
 def step_impl(context):
     time.sleep(3)
-    context.home.search_keyword().send_keys("HP")
+    context.home.search_valid_keyword()
 
 @when(u'I click on the search button')
 def step_impl(context):
-    context.home.search_button().click()
+    context.home.search_button()
 
 @then(u'Valid product should be visible in the search result')
 def step_impl(context):
-    assert context.home.search_result().is_displayed()
-    context.home.search_result().click()
+    context.home.search_result()
 
 @when(u'I enter invalid product name in search box field')
 def step_impl(context):
-    context.home.search_keyword().send_keys("abcxz")
+    context.home.search_invalid_keyword()
 
 @then(u'proper message should be visible in the search result')
 def step_impl(context):
     time.sleep(3)
-    sample_text ="There is no product that matches the search criteria."
-    assert context.home.search_text().text.__eq__(sample_text)
+    context.home.search_text()
 
 @when(u'I donot enter anything in the search box field')
 def step_impl(context):
     time.sleep(3)
-    context.home.search_button().click()
+    context.home.search_button()
 
 
 

@@ -20,9 +20,9 @@ class Features:
     @when(u'I enter valid email address and password')
     def step_impl(context):
         time.sleep(3)
-        context.home.emails().send_keys('amotooriapril2023@gmail.com')
+        context.home.valid_email()
         time.sleep(3)
-        context.home.passwords().send_keys('12345')
+        context.home.passwords()
 
 
 
@@ -39,8 +39,8 @@ class Features:
 
     @when(u'I enter invalid email address and valid password')
     def step_impl(context):
-        context.home.emails().send_keys('motooriapril2023@gmail.com')
-        context.home.passwords().send_keys('12345')
+        context.home.invalid_email()
+        context.home.passwords()
 
 
     @then(u'I should get a proper warning message')
@@ -51,17 +51,17 @@ class Features:
 
     @when(u'I enter valid email address and invalid password')
     def step_impl(context):
-        context.home.emails().send_keys('amotooriapril2023@gmail.com')
-        context.home.passwords().send_keys('02345')
+        context.home.valid_email()
+        context.home.inavlid_password()
 
 
     @when(u'I enter invalid email address and invalid password')
     def step_impl(context):
-        context.home.emails().send_keys('motooriapril2023@gmail.com')
-        context.home.passwords().send_keys('62345')
+        context.home.invalid_email()
+        context.home.inavlid_password()
 
 
     @when(u'I donot enter anything into email address and invalid password')
     def step_impl(context):
-        context.home.emails().send_keys('')
-        context.home.passwords().send_keys('')
+        context.home.blank_email()
+        context.home.blank_password()

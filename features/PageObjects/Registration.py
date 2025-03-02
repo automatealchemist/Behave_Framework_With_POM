@@ -1,5 +1,10 @@
-from selenium.webdriver.common.by import By
+import random
 
+from selenium.webdriver.common.by import By
+number = random.randint(1000, 9999)
+number1 = random.randint(1000, 9999)
+new_email = "bdddemo" + str(number) + "@mailinator.com"
+new_email1 = "bdddemo" + str(number1) + "@mailinator.com"
 
 class Registration:
 
@@ -28,37 +33,40 @@ class Registration:
 
 
     def my_account_click(self):
-        return self.driver.find_element(*Registration.my_account)
+        self.driver.find_element(*Registration.my_account).click()
 
     def register_click(self):
-        return self.driver.find_element(*Registration.register_button)
+        self.driver.find_element(*Registration.register_button).click()
 
     def first_name(self):
-        return self.driver.find_element(*Registration.firstname)
+        self.driver.find_element(*Registration.firstname).send_keys("ujjwal")
 
     def last_name(self):
-        return self.driver.find_element(*Registration.lastname)
+        self.driver.find_element(*Registration.lastname).send_keys("kumar")
 
     def email(self):
-        return self.driver.find_element(*Registration.emails)
+        self.driver.find_element(*Registration.emails).send_keys(new_email)
+
+    def email_1(self):
+        self.driver.find_element(*Registration.emails).send_keys(new_email1)
 
     def phone_number(self):
-        return self.driver.find_element(*Registration.mobilenumber)
+        self.driver.find_element(*Registration.mobilenumber).send_keys("1234567890")
 
     def new_password(self):
-        return self.driver.find_element(*Registration.newpassword)
+        self.driver.find_element(*Registration.newpassword).send_keys("Abcdef@123456")
 
     def confirm_password(self):
-        return self.driver.find_element(*Registration.confirmpassword)
+        self.driver.find_element(*Registration.confirmpassword).send_keys("Abcdef@123456")
 
     def privacy_policy(self):
-        return self.driver.find_element(*Registration.privacy_policy_click)
+        self.driver.find_element(*Registration.privacy_policy_click).click()
 
     def continues(self):
-        return self.driver.find_element(*Registration.continue_button)
+        self.driver.find_element(*Registration.continue_button).click()
 
     def radio_button(self):
-        return self.driver.find_element(*Registration.radio_button_yes)
+        self.driver.find_element(*Registration.radio_button_yes).click()
 
     def first_name_assert(self):
         return self.driver.find_element(*Registration.firstname_assert)
@@ -67,12 +75,35 @@ class Registration:
         return self.driver.find_element(*Registration.lastname_assert)
 
     def email_assert(self):
-        return self.driver.find_element(*Registration.emailassert)
+        assert self.driver.find_element(*Registration.emailassert).text == 'E-Mail Address does not appear to be valid!'
 
     def valid_email(self):
-        return self.driver.find_element(*Registration.validemail)
+        self.driver.find_element(*Registration.validemail)
 
     def registration(self):
         return self.driver.find_element(*Registration.register_success)
+
+    def first_name_blank(self):
+        self.driver.find_element(*Registration.firstname).send_keys("")
+
+    def last_name_blank(self):
+        self.driver.find_element(*Registration.lastname).send_keys("")
+
+    def email_blank(self):
+        self.driver.find_element(*Registration.emails).send_keys('')
+
+    def phone_number_blank(self):
+        self.driver.find_element(*Registration.mobilenumber).send_keys("")
+
+    def new_password_blank(self):
+        self.driver.find_element(*Registration.newpassword).send_keys("")
+
+    def confirm_password_blank(self):
+        self.driver.find_element(*Registration.confirmpassword).send_keys("")
+
+    def email_duplicate(self):
+        assert self.driver.find_element(*Registration.emailassert).text == 'Warning: E-Mail Address is already registered!'
+
+
 
 

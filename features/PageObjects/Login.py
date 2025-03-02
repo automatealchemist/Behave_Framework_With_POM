@@ -20,11 +20,23 @@ class Homepage:
     def input_submit_click(self):
         return self.driver.find_element(*Homepage.input_submit)
 
-    def emails(self):
-        return self.driver.find_element(*Homepage.email)
+    def valid_email(self):
+        self.driver.find_element(*Homepage.email).send_keys('amotooriapril2023@gmail.com')
 
     def passwords(self):
-        return self.driver.find_element(*Homepage.password)
+        self.driver.find_element(*Homepage.password).send_keys('12345')
+
+    def inavlid_password(self):
+        self.driver.find_element(*Homepage.password).send_keys('02345')
+
+    def invalid_email(self):
+        self.driver.find_element(*Homepage.email).send_keys('motooriapril2023@gmail.com')
+
+    def blank_password(self):
+        self.driver.find_element(*Homepage.password).send_keys('')
+
+    def blank_email(self):
+        self.driver.find_element(*Homepage.email).send_keys('')
 
 
 
