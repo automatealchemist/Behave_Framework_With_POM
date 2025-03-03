@@ -10,8 +10,8 @@ from features.PageObjects.Search import Search
 
 @given(u'I got navigated to Homepage')
 def step_impl(context):
-    search_url = context.base_url
-    context.driver.get(search_url)
+
+    context.driver.get(context.base_url)
     context.home = Search(context.driver)
 
 @when(u'I enter valid product name in search box field')
@@ -38,7 +38,7 @@ def step_impl(context):
 
 @when(u'I donot enter anything in the search box field')
 def step_impl(context):
-    time.sleep(3)
+
     context.home.search_button()
 
 

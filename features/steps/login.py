@@ -1,21 +1,19 @@
-
 from features.environment import *
 from features.PageObjects.Login import *
-
-
 import time
 from features.PageObjects.Login import Homepage
 from behave import given, when
+from features.PageObjects.Home_page import Desktop
+
 
 class Features:
     @given(u'I navigated to Login page')
     def step_impl(context):
-        login_url = context.base_url
-        context.driver.get(login_url)
+        context.driver.get(context.base_url)
         context.home = Homepage(context.driver)
         time.sleep(2)
-        context.home.my_account_click().click()
-        context.home.login_click().click()
+        context.home.my_account_click()
+        context.home.login_click()
 
     @when(u'I enter valid email address and password')
     def step_impl(context):
@@ -28,14 +26,19 @@ class Features:
 
     @when(u'I click on the Login Button')
     def step_impl(context):
-        context.home.input_submit_click().click()
+        context.home.input_submit_click()
         time.sleep(3)
 
 
     @then(u'I should logged in')
     def step_impl(context):
-        assert context.driver.current_url == 'https://tutorialsninja.com/demo/index.php?route=account/account'
+        context.desktop = Desktop(context.driver)
+        context.desktop.login_assert()
 
+    @then(u'I click on Desktop')
+    def step_impl(context):
+        context.desktop = Desktop(context.driver)
+        context.desktop.homepage_element()
 
     @when(u'I enter invalid email address and valid password')
     def step_impl(context):
@@ -45,8 +48,7 @@ class Features:
 
     @then(u'I should get a proper warning message')
     def step_impl(context):
-        assert context.driver.find_element(By.XPATH,
-                                       '//div[@class="alert alert-danger alert-dismissible"]').text == 'Warning: No match for E-Mail Address and/or Password.'
+        context.home.credential_warning()
 
 
     @when(u'I enter valid email address and invalid password')

@@ -2,12 +2,13 @@
 
 Feature: Login with Email & Password
 
-
+  @login
   Scenario: Login with valid credentials
     Given I navigated to Login page
     When I enter valid email address and password
     And I click on the Login Button
     Then I should logged in
+    And I click on Desktop
 
   Scenario: Login with invalid email and valid password
     Given I navigated to Login page

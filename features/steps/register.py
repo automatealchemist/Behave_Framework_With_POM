@@ -1,16 +1,12 @@
-
 from features.PageObjects.Registration import Registration
 from features.environment import *
-
 from behave import *
-
 
 
 @given(u'I navigate to Register Page')
 def step_impl(context):
 
-    login_url = context.base_url
-    context.driver.get(login_url)
+    context.driver.get(context.base_url)
     context.home = Registration(context.driver)
     time.sleep(2)
     context.home.my_account_click()
@@ -45,7 +41,7 @@ def step_impl(context):
 @then(u'Account should get created')
 def step_impl(context):
     time.sleep(3)
-    assert context.home.registration().text== "Your Account Has Been Created!"
+    context.home.assert_registration()
 
 
 @when(u'I enter all fields')
@@ -111,8 +107,8 @@ def step_impl(context):
 
 @then(u'Proper writing message for every mandatory fields should be displayed')
 def step_impl(context):
-    assert context.home.first_name_assert().text =='First Name must be between 1 and 32 characters!'
-    assert context.home.last_name_assert().text == 'Last Name must be between 1 and 32 characters!'
+    context.home.fields_assert()
+
     time.sleep(3)
 
 

@@ -1,9 +1,11 @@
 from selenium.webdriver.common.by import By
 
+from features.PageObjects.Baseclass import Baseclass
 
-class Search:
+
+class Search(Baseclass):
     def __init__(self,driver):
-        self.driver = driver
+        super().__init__(driver)
 
     search_k = (By.NAME, 'search')
     searchbutton = (By.XPATH, '//*[@id="search"]/span/button')
@@ -17,6 +19,7 @@ class Search:
         self.driver.find_element(*Search.searchbutton).click()
 
     def search_result(self):
+        element(,"HP LP3065",)
         assert self.driver.find_element(*Search.searchresult).is_displayed()
         self.driver.find_element(*Search.searchresult).click()
 

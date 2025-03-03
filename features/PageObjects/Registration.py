@@ -1,15 +1,18 @@
 import random
 
 from selenium.webdriver.common.by import By
+
+from features.PageObjects.Baseclass import Baseclass
+
 number = random.randint(1000, 9999)
 number1 = random.randint(1000, 9999)
 new_email = "bdddemo" + str(number) + "@mailinator.com"
 new_email1 = "bdddemo" + str(number1) + "@mailinator.com"
 
-class Registration:
+class Registration(Baseclass):
 
     def __init__(self,driver):
-        self.driver = driver
+        super().__init__(driver)
 
 
     my_account = (By.XPATH, '//*[@id="top-links"]/ul/li[2]/a')
@@ -25,9 +28,11 @@ class Registration:
     radio_button_yes=(By.XPATH, '//*[@id="content"]/form/fieldset[3]/div/div/label[1]')
     firstname_assert = (By.XPATH,'//*[@id="account"]/div[2]/div/div')
     lastname_assert = (By.XPATH,'//*[@id="account"]/div[3]/div/div')
-    emailassert = (By.XPATH,"//div[@class='alert alert-danger alert-dismissible']")
+    emailassert = (By.XPATH,'//*[@id="account"]/div[4]/div/div')
     validemail = (By.XPATH,'//*[@id="account"]/div[4]/div/div')
     register_success = (By.XPATH,'//*[@id="content"]/h1')
+    email_exist= (By.XPATH,'//*[@id="account-register"]/div[1]')
+
 
 
 
@@ -68,11 +73,9 @@ class Registration:
     def radio_button(self):
         self.driver.find_element(*Registration.radio_button_yes).click()
 
-    def first_name_assert(self):
-        return self.driver.find_element(*Registration.firstname_assert)
-
-    def last_name_assert(self):
-        return self.driver.find_element(*Registration.lastname_assert)
+    def fields_assert(self):
+        assert self.driver.find_element(*Registration.firstname_assert).text =='First Name must be between 1 and 32 characters!'
+        assert self.driver.find_element(*Registration.lastname_assert).text == 'Last Name must be between 1 and 32 characters!'
 
     def email_assert(self):
         assert self.driver.find_element(*Registration.emailassert).text == 'E-Mail Address does not appear to be valid!'
@@ -80,8 +83,8 @@ class Registration:
     def valid_email(self):
         self.driver.find_element(*Registration.validemail)
 
-    def registration(self):
-        return self.driver.find_element(*Registration.register_success)
+    def assert_registration(self):
+        assert self.driver.find_element(*Registration.register_success).text == "Your Account Has Been Created!"
 
     def first_name_blank(self):
         self.driver.find_element(*Registration.firstname).send_keys("")
@@ -102,7 +105,9 @@ class Registration:
         self.driver.find_element(*Registration.confirmpassword).send_keys("")
 
     def email_duplicate(self):
-        assert self.driver.find_element(*Registration.emailassert).text == 'Warning: E-Mail Address is already registered!'
+        assert self.driver.find_element(*Registration.email_exist).text == 'Warning: E-Mail Address is already registered!'
+
+
 
 
 
