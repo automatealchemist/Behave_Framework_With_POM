@@ -26,6 +26,7 @@ def step_impl(context):
 @then(u'Valid product should be visible in the search result')
 def step_impl(context):
     context.home.search_result()
+    time.sleep(3)
 
 @when(u'I enter invalid product name in search box field')
 def step_impl(context):

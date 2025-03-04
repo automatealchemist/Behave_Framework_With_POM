@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from features.PageObjects.Baseclass import Baseclass
+from utilities.Baseclass import Baseclass
 
 
 class Homepage(Baseclass):
@@ -27,26 +27,26 @@ class Homepage(Baseclass):
         self.click_on_element(" input_submit_xpath",'//*[@id="content"]/div/div[2]/div/form/input')
 
 
-    def valid_email(self):
-        self.send_data("email_id",'input-email','amotooriapril2023@gmail.com')
+    def valid_email(self,email):
+        self.send_data("email_id",'input-email',email)
 
 
-    def passwords(self):
-        self.send_data("password_id", 'input-password', '12345')
+    def passwords(self,password):
+        self.send_data("password_id", 'input-password', password)
 
-    def inavlid_password(self):
-        self.send_data("password_id", 'input-password', '02345')
-
-
-    def invalid_email(self):
-        self.send_data("email_id", 'input-email', 'motooriapril2023@gmail.com')
-
-    def blank_password(self):
-        self.send_data("password_id", 'input-password', '')
+    def invalid_password(self,password):
+        self.send_data("password_id", 'input-password', password)
 
 
-    def blank_email(self):
-        self.send_data("email_id", 'input-email', '')
+    def invalid_email(self,email):
+        self.send_data("email_id", 'input-email', email)
+
+    def blank_password(self,password):
+        self.send_data("password_id", 'input-password', password)
+
+
+    def blank_email(self,email):
+        self.send_data("email_id", 'input-email', email)
 
     def credential_warning(self):
         assert self.driver.find_element(*Homepage.credential_missing_xpath).text== 'Warning: No match for E-Mail Address and/or Password.'

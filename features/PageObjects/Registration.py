@@ -2,7 +2,7 @@ import random
 
 from selenium.webdriver.common.by import By
 
-from features.PageObjects.Baseclass import Baseclass
+from utilities.Baseclass import Baseclass
 
 number = random.randint(1000, 9999)
 number1 = random.randint(1000, 9999)
@@ -43,11 +43,11 @@ class Registration(Baseclass):
     def register_click(self):
         self.driver.find_element(*Registration.register_button).click()
 
-    def first_name(self):
-        self.driver.find_element(*Registration.firstname).send_keys("ujjwal")
+    def first_name(self,first_name):
+        self.driver.find_element(*Registration.firstname).send_keys(first_name)
 
-    def last_name(self):
-        self.driver.find_element(*Registration.lastname).send_keys("kumar")
+    def last_name(self,last_name):
+        self.driver.find_element(*Registration.lastname).send_keys(last_name)
 
     def email(self):
         self.driver.find_element(*Registration.emails).send_keys(new_email)
@@ -55,14 +55,14 @@ class Registration(Baseclass):
     def email_1(self):
         self.driver.find_element(*Registration.emails).send_keys(new_email1)
 
-    def phone_number(self):
-        self.driver.find_element(*Registration.mobilenumber).send_keys("1234567890")
+    def phone_number(self,phone_number):
+        self.driver.find_element(*Registration.mobilenumber).send_keys(phone_number)
 
-    def new_password(self):
-        self.driver.find_element(*Registration.newpassword).send_keys("Abcdef@123456")
+    def new_password(self,password):
+        self.driver.find_element(*Registration.newpassword).send_keys(password)
 
-    def confirm_password(self):
-        self.driver.find_element(*Registration.confirmpassword).send_keys("Abcdef@123456")
+    def confirm_password(self,confrm_password):
+        self.driver.find_element(*Registration.confirmpassword).send_keys(confrm_password)
 
     def privacy_policy(self):
         self.driver.find_element(*Registration.privacy_policy_click).click()

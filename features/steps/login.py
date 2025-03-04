@@ -15,12 +15,13 @@ class Features:
         context.home.my_account_click()
         context.home.login_click()
 
-    @when(u'I enter valid email address and password')
-    def step_impl(context):
+    @when(u'I enter valid email address as "{email}" and password as "{password}"')
+
+    def step_impl(context,email,password):
         time.sleep(3)
-        context.home.valid_email()
+        context.home.valid_email(email)
         time.sleep(3)
-        context.home.passwords()
+        context.home.passwords(password)
 
 
 
@@ -40,10 +41,7 @@ class Features:
         context.desktop = Desktop(context.driver)
         context.desktop.homepage_element()
 
-    @when(u'I enter invalid email address and valid password')
-    def step_impl(context):
-        context.home.invalid_email()
-        context.home.passwords()
+
 
 
     @then(u'I should get a proper warning message')
@@ -51,19 +49,26 @@ class Features:
         context.home.credential_warning()
 
 
-    @when(u'I enter valid email address and invalid password')
-    def step_impl(context):
-        context.home.valid_email()
-        context.home.inavlid_password()
+    @when(u'I enter invalid email address as "{email}" and valid password "{password}"')
 
+    def step_impl(context, email, password):
+            context.home.invalid_email(email)
+            context.home.passwords(password)
 
-    @when(u'I enter invalid email address and invalid password')
-    def step_impl(context):
-        context.home.invalid_email()
-        context.home.inavlid_password()
+    @when(u'I enter valid email address as "{email}" and invalid password "{password}"')
 
+    def step_impl(context, email, password):
+            context.home.valid_email(email)
+            context.home.invalid_password(password)
 
-    @when(u'I donot enter anything into email address and invalid password')
-    def step_impl(context):
-        context.home.blank_email()
-        context.home.blank_password()
+    @when(u'I donot enter anything into email address "" and password ""')
+    def step_impl(context, email, password):
+            context.home.blank_email(email)
+            context.home.blank_password(password)
+
+    @when(u'I enter invalid email address as "{email}" and invalid password "{password}"')
+
+    def step_impl(context, email, password):
+            context.home.blank_email(email)
+            context.home.blank_password(password)
+

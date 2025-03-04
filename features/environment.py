@@ -1,6 +1,9 @@
 
 import time
 import random
+
+import allure
+from allure_commons.types import AttachmentType
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -29,3 +32,7 @@ def before_scenario(context,scenario):
 
 def after_scenario(context,scenario):
     context.driver.quit()
+
+def after_step(context,step):
+    if step.status =='failed':
+        allure.attach(context.driver.get_screenshot_as_png(),name ="failed_screenshot",attachment_type=AttachmentType.PNG)

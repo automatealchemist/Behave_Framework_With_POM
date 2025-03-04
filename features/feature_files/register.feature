@@ -1,15 +1,21 @@
 Feature: Register New User
 
+  @register
   Scenario: Register with mandatory fields
     Given I navigate to Register Page
     When I enter mandatory fields
+    |first_name|last_name|phone_number|password  |confirm_password|
+    |abc       |xyz      |1234567890  |1234567890|1234567890       |
     And I select Privacy Policy Options
     And I click on Continue button
     Then Account should get created
 
+  @register_all_fields
   Scenario: Register with all fields
     Given I navigate to Register Page
     When I enter all fields
+      |first_name|last_name|phone_number|password  |confirm_password|
+      |abc       |xyz      |1234567890  |1234567890|1234567890       |
     And I select Privacy Policy Options
     And I click on Continue button
     Then Account should get created

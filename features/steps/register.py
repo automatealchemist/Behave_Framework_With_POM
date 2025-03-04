@@ -16,15 +16,16 @@ def step_impl(context):
 
 @when(u'I enter mandatory fields')
 def step_impl(context):
-    context.home.first_name()
-    context.home.last_name()
     context.home.email()
-    time.sleep(2)
-    context.home.phone_number()
-    time.sleep(2)
-    context.home.new_password()
-    time.sleep(2)
-    context.home.confirm_password()
+    for row in context.table:
+        context.home.first_name(row["first_name"])
+        context.home.last_name(row["last_name"])
+        time.sleep(2)
+        context.home.phone_number(row["phone_number"])
+        time.sleep(2)
+        context.home.new_password(row["password"])
+        time.sleep(2)
+        context.home.confirm_password(row["confirm_password"])
 
 
 @when(u'I select Privacy Policy Options')
@@ -46,17 +47,18 @@ def step_impl(context):
 
 @when(u'I enter all fields')
 def step_impl(context):
-    context.home.first_name()
-    context.home.last_name()
     context.home.email_1()
-    time.sleep(2)
-    context.home.phone_number()
-    time.sleep(2)
-    context.home.new_password()
-    time.sleep(2)
-    context.home.confirm_password()
-    context.home.radio_button()
-    time.sleep(3)
+    for row in context.table:
+        context.home.first_name(row["first_name"])
+        context.home.last_name(row["last_name"])
+        time.sleep(2)
+        context.home.phone_number(row["phone_number"])
+        time.sleep(2)
+        context.home.new_password(row["password"])
+        time.sleep(2)
+        context.home.confirm_password(row["confirm_password"])
+        context.home.radio_button()
+        time.sleep(3)
 
 
 @when(u'I enter all fields except email address')
